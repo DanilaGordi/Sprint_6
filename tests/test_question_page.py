@@ -1,9 +1,7 @@
 import allure
 import pytest
 from conftest import driver
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
-from pages.main_site_page import MainPage
+from pages.main_page import MainPage
 from locators.main_site_locators import MainSiteLocators
 from data import AnswersText
 
@@ -25,7 +23,7 @@ class TestQuestionsPage:
     def test_answers_to_questions(self, question, answer, right_answer, driver):
             MainPage(driver).click_button_cookies()
             MainPage(driver).find_questions()
-            WebDriverWait(driver, 3).until(ec.visibility_of_element_located(question)).click()
-            WebDriverWait(driver, 3).until(ec.visibility_of_element_located(answer))
+            MainPage(driver).click_to_element(question)
+            MainPage(driver).wait_for_element(answer)
             right_text = driver.find_element(*answer).text
             assert right_text == right_answer
