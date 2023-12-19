@@ -21,9 +21,10 @@ class TestQuestionsPage:
                                  (MainSiteLocators.EIGHTH_QUESTION, MainSiteLocators.EIGHTH_ANSWER, AnswersText.text_answer_8)
                              ])
     def test_answers_to_questions(self, question, answer, right_answer, driver):
-            MainPage(driver).click_button_cookies()
-            MainPage(driver).find_questions()
-            MainPage(driver).click_to_element(question)
-            MainPage(driver).wait_for_element(answer)
-            right_text = driver.find_element(*answer).text
+            main_page = MainPage(driver)
+            main_page.click_button_cookies()
+            main_page.find_questions()
+            main_page.click_to_element(question)
+            main_page.wait_for_element(answer)
+            right_text = main_page.get_text(answer)
             assert right_text == right_answer

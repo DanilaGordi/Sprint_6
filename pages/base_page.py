@@ -33,3 +33,6 @@ class BasePage:
     def get_site(self):
         return self.driver.current_url
 
+    def switch_to_window(self):
+        return self.driver.switch_to.window(self.driver.window_handles[-1])
+

@@ -12,9 +12,11 @@ class TestOrderScooter:
     @allure.title('Проверка заказа через верхнюю кнопку "Заказать"')
     @allure.description('Заказываем самокат через верхнюю кнопку "Заказать" при помощи данных из первого набора, и проверяем, что заказ сформирован')
     def test_order_one(self, driver):
-        MainPage(driver).click_button_cookies()
-        MainPage(driver).click_order_top()
-        OrderPage(driver).fill_rent_form(SiteOrderDaniil.name,
+        main_page = MainPage(driver)
+        main_page.click_button_cookies()
+        main_page.click_order_top()
+        order_page = OrderPage(driver)
+        order_page.fill_rent_form(SiteOrderDaniil.name,
                                        SiteOrderDaniil.surname,
                                        SiteOrderDaniil.address,
                                        OrderSiteLocators.METRO_UNIVERSITY,
@@ -28,9 +30,11 @@ class TestOrderScooter:
     @allure.title('Проверка заказа через нижнюю кнопку "Заказать"')
     @allure.description('Заказываем самокат через нижнюю кнопку "Заказать" при помощи данных из второго набора, и проверяем, что заказ сформирован')
     def test_order_two(self, driver):
-        MainPage(driver).click_button_cookies()
-        MainPage(driver).click_order_top()
-        OrderPage(driver).fill_rent_form(SiteOrderElse.name,
+        main_page = MainPage(driver)
+        main_page.click_button_cookies()
+        main_page.click_order_down()
+        order_page = OrderPage(driver)
+        order_page.fill_rent_form(SiteOrderElse.name,
                                        SiteOrderElse.surname,
                                        SiteOrderElse.address,
                                        OrderSiteLocators.METRO_DINAMO,
